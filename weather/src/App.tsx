@@ -27,9 +27,17 @@ const App = () => {
 
           </C.WeatherToday>
 
-          <C.WeatherWeek>
-            <WeatherDay/>
-          </C.WeatherWeek>
+          <C.WeatherWrapper>
+
+            <C.WeatherWeek>
+              <WeatherDay/>
+              <WeatherDay/>
+              <WeatherDay/>
+              <WeatherDay/>
+            </C.WeatherWeek>
+
+            <C.WeatherUpdate>Atualizado há alguns minutos...</C.WeatherUpdate>
+        </C.WeatherWrapper>
         </C.WeatherArea>
 
       </C.Container>

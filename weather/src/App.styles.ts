@@ -69,13 +69,29 @@ export const WeatherToday = styled.div`
     border-radius: 16px 0px 0px 16px;
     
 `;
-export const WeatherWeek = styled.div`
+export const WeatherWrapper = styled.div`
+    display: flex;
+    /* padding: 20px; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: #E4E4E4;
     height: 100%;
     width: 70%;
     border-radius: 0px 16px 16px 0px;   
 `;
+export const WeatherWeek = styled.div`
+    display: flex;
+    flex-direction: row;
+`;
 
+export const WeatherUpdate = styled.p`
+    font-size: 15px;
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: #9A9999;
+    margin-top: 25px
+`;
 export const WeatherImage = styled.img`
     width: 180px;
     height: 180px;
