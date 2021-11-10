@@ -22,43 +22,41 @@ export const Logo = styled.img`
 
 export const Search = styled.div`
     display: flex;
-    padding: 5px 10px;
+    padding: 5px 20px;
     
 
     background-color: #fff;
     margin-top: 5%;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     width: 80%;
     height: 40px;
     border-radius: 16px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `
 
-export const SearchInput = styled.form`
-    display: flex;
+export const SearchInput = styled.input`
     width: 100%;
-    /* background-color: blue; */
-    align-items: center;
+    align-items: center; 
+    border: none;
+    font-family: 'Roboto';
+    font-size: 19px;
+    color: #5B5B5B;
+    font-weight: 200;
+    /* background-color: red; */
 `
 
 export const SearchIcon = styled.p`
-    /* background-color: red; */
     width: 40px;
+    background-color: red;
 `
-
-export const Placeholder = styled.p`
-    font-size: 16px;
-    font-family: 'Roboto';
-    font-weight: 500;
-    color: #5B5B5B;
-    /* background-color:pink */
-`
-
 export const WeatherArea = styled.div`
     display: flex;
     height: 450px;
     width: 80%;
     border-radius: 16px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    
+
 `;
 export const WeatherToday = styled.div`
     display: flex;
@@ -90,10 +88,9 @@ export const WeatherTitle = styled.h1`
     font-family: 'Roboto';
     font-weight: bold;
     color: #5B5B5B;
-    /* background-color:red; */
 `;
 export const WeatherSubtitle = styled.h2`
-    font-size: 55px;
+    font-size: 21px;
     font-family: 'Roboto';
     font-weight: 300;
     color: #5B5B5B
