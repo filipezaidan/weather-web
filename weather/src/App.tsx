@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import * as C from './App.styles';
 import logo from './assets/Logo.png';
 import sun from './assets/sun.png';
@@ -5,7 +7,44 @@ import sun from './assets/sun.png';
 import { FiSearch } from 'react-icons/fi';
 import WeatherDay from './components/WeatherWeekDay';
 
+import api , { key } from './services/api';
+import axios from 'axios';
+
 const App = () => {
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
+  const [status, setStatus] = useState('');
+
+  useEffect(() => {
+    axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
+    axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+    axios.get(
+        'https://www.metaweather.com/api/location/2487956/',{
+          headers: {
+            'Content-Type': 'text/plain'
+          }
+        }
+      ).then((response) => {
+        console.log(response);
+    })
+
+  },[])
+  // useEffect(() => {
+  //   (() => {
+  //     if (!navigator.geolocation) {
+  //       setStatus('Geolocation is not supported by your browser');
+  //     } else {
+  //       setStatus('Locating...');
+  //       navigator.geolocation.getCurrentPosition((position) => {
+  //         setLat(position.coords.latitude);
+  //         setLng(position.coords.longitude);
+  //       }, () => {
+  //         setStatus('Unable to retrieve your location');
+  //       });
+  //     }
+  //   })
+  // },[])
+
   return (
     <C.Wrapper>  
       <C.Container>
@@ -14,7 +53,6 @@ const App = () => {
         <C.Search>
           <C.SearchInput placeholder="Digite uma cidade..."/>
           <FiSearch size={24} color="#2EA9D3"/>
-          {/* <C.SearchIcon>?</C.SearchIcon> */}
 
         </C.Search>
 
