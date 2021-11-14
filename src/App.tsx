@@ -62,7 +62,6 @@ const App = () => {
         console.log(results);
 
         setWeatherNow(results);
-
       })
  
   },[lat,lng])
