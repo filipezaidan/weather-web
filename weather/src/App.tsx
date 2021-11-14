@@ -1,49 +1,60 @@
-import { useEffect, useState } from 'react';
-
-import * as C from './App.styles';
-import logo from './assets/Logo.png';
-import sun from './assets/sun.png';
-
+//Libraries
+import { useEffect, useState, } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import WeatherDay from './components/WeatherWeekDay';
 
-import api , { key } from './services/api';
-import axios from 'axios';
+//Services
+import { api, key } from './services/api';
+
+//Styles
+import * as C from './App.styles';
+
+//Assets
+import logo from './assets/Logo.png';
+import sun from './assets/sun.png';
+
+type Weather = {
+  city: string,
+  temp: string,
+
+}
 
 const App = () => {
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
-  const [status, setStatus] = useState('');
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
+  const [weatherNow, setWeatherNow] = useState<Weather>()
+
+  const getUserLocation = async () => {
+    function success(position : any) {
+      let location = position.coords;
+
+      setLat(location.latitude);
+      setLng(location.longitude);
+    }
+    
+    function error(err: any) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    
+    await navigator.geolocation.getCurrentPosition(success, error);
+  };
 
   useEffect(() => {
-    axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
-    axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-    axios.get(
-        'https://www.metaweather.com/api/location/2487956/',{
-          headers: {
-            'Content-Type': 'text/plain'
-          }
-        }
-      ).then((response) => {
-        console.log(response);
-    })
-
+    getUserLocation();
   },[])
-  // useEffect(() => {
-  //   (() => {
-  //     if (!navigator.geolocation) {
-  //       setStatus('Geolocation is not supported by your browser');
-  //     } else {
-  //       setStatus('Locating...');
-  //       navigator.geolocation.getCurrentPosition((position) => {
-  //         setLat(position.coords.latitude);
-  //         setLng(position.coords.longitude);
-  //       }, () => {
-  //         setStatus('Unable to retrieve your location');
-  //       });
-  //     }
-  //   })
-  // },[])
+
+  useEffect(() => {
+    if(lat && lng !== '')
+    api.get(`/weather?key=${key}&lat=${lat}&lon=${lng}`)
+      .then((response) => {
+        const { results } = response.data;
+        console.log(results);
+
+        setWeatherNow(results);
+
+      })
+ 
+  },[lat,lng])
 
   return (
     <C.Wrapper>  
@@ -60,8 +71,8 @@ const App = () => {
           <C.WeatherToday>
             <C.WeatherImage src={sun}/>
 
-            <C.WeatherTitle>47º</C.WeatherTitle>
-            <C.WeatherSubtitle>São Paulo, SP</C.WeatherSubtitle>
+            <C.WeatherTitle>{weatherNow?.temp}</C.WeatherTitle>
+            <C.WeatherSubtitle>{weatherNow?.city}</C.WeatherSubtitle>
 
           </C.WeatherToday>
 

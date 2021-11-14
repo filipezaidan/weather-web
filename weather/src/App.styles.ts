@@ -23,6 +23,7 @@ export const Logo = styled.img`
 export const Search = styled.div`
     display: flex;
     padding: 5px 20px;
+    align-items: center;
     
 
     background-color: #fff;
