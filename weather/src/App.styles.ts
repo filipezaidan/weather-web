@@ -43,12 +43,12 @@ export const SearchInput = styled.input`
     font-size: 19px;
     color: #5B5B5B;
     font-weight: 200;
-    /* background-color: red; */
 `
 
-export const SearchIcon = styled.p`
-    width: 40px;
-    background-color: red;
+export const SearchIcon = styled.button`
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 `
 export const WeatherArea = styled.div`
     display: flex;
@@ -56,9 +56,8 @@ export const WeatherArea = styled.div`
     width: 80%;
     border-radius: 16px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    
-
 `;
+
 export const WeatherToday = styled.div`
     display: flex;
     flex-direction: column;

@@ -16,10 +16,10 @@ import sun from './assets/sun.png';
 type Weather = {
   city: string,
   temp: string,
-
 }
 
 const App = () => {
+  const [city, setCity] = useState('');
   const [lat, setLat] = useState('');
   const [lng, setLng] = useState('');
   const [weatherNow, setWeatherNow] = useState<Weather>()
@@ -38,6 +38,17 @@ const App = () => {
     
     await navigator.geolocation.getCurrentPosition(success, error);
   };
+
+  const getWeatherByCity = (city : string) => {
+    api.get(`/weather?key=${key}&city_name=${city}`)
+    .then((response) => {
+      const { results } = response.data;
+      console.log(results);
+
+      setWeatherNow(results);
+
+    })
+  }
 
   useEffect(() => {
     getUserLocation();
@@ -62,8 +73,13 @@ const App = () => {
         <C.Logo src={logo}/>
 
         <C.Search>
-          <C.SearchInput placeholder="Digite uma cidade..."/>
-          <FiSearch size={24} color="#2EA9D3"/>
+          <C.SearchInput 
+            placeholder="Digite uma cidade..."
+            onChange={e => setCity(e.target.value)}
+          />
+          <C.SearchIcon onClick={() => getWeatherByCity(city)}>
+            <FiSearch size={24} color="#2EA9D3"/>
+          </C.SearchIcon>
 
         </C.Search>
 
