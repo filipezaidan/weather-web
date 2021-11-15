@@ -24,61 +24,64 @@ const App = () => {
   const [lng, setLng] = useState('');
   const [weatherNow, setWeatherNow] = useState<Weather>()
 
-  const getUserLocation = async () => {
+  const getUserLocation = () => {
     function success(position : any) {
-      let location = position.coords;
+      const {latitude, longitude} = position.coords;
 
-      setLat(location.latitude);
-      setLng(location.longitude);
+      setLat(latitude);
+      setLng(longitude);
     }
     
     function error(err: any) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
     }
     
-    await navigator.geolocation.getCurrentPosition(success, error);
+    navigator.geolocation.getCurrentPosition(success, error);
   };
 
-  const getWeatherByCity = (city : string) => {
+  const getWeatherByCity = (e: any) => {
+    e.preventDefault();
+
     api.get(`/weather?key=${key}&city_name=${city}`)
     .then((response) => {
       const { results } = response.data;
-      console.log(results);
-
+      
       setWeatherNow(results);
-
+      setCity('');      
     })
-  }
 
+  }
+  
   useEffect(() => {
     getUserLocation();
   },[])
-
+  
   useEffect(() => {
     if(lat && lng !== '')
     api.get(`/weather?key=${key}&lat=${lat}&lon=${lng}`)
-      .then((response) => {
-        const { results } = response.data;
-        console.log(results);
-
-        setWeatherNow(results);
-      })
- 
+    .then((response) => {
+      const { results } = response.data;
+      console.log(results);
+      
+      setWeatherNow(results);
+    })
+    
   },[lat,lng])
-
+  
   return (
     <C.Wrapper>  
       <C.Container>
         <C.Logo src={logo}/>
 
-        <C.Search>
+        <C.Search> 
           <C.SearchInput 
             placeholder="Digite uma cidade..."
             onChange={e => setCity(e.target.value)}
+            value={city}
           />
-          <C.SearchIcon onClick={() => getWeatherByCity(city)}>
+          <C.SearchButton onClick={(e) => getWeatherByCity(e)}>
             <FiSearch size={24} color="#2EA9D3"/>
-          </C.SearchIcon>
+          </C.SearchButton>
 
         </C.Search>
 

@@ -20,7 +20,7 @@ export const Logo = styled.img`
     width: 250px;
 `;
 
-export const Search = styled.div`
+export const Search = styled.form`
     display: flex;
     padding: 5px 20px;
     align-items: center;
@@ -45,7 +45,7 @@ export const SearchInput = styled.input`
     font-weight: 200;
 `
 
-export const SearchIcon = styled.button`
+export const SearchButton = styled.button`
     background-color: transparent;
     border: none;
     cursor: pointer;
