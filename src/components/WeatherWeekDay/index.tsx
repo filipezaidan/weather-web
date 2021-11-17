@@ -7,7 +7,7 @@ import { Item } from '../../@type/Weather';
 import { WeatherIcon } from '../../utils/WeatherIcon';
 
 
-const WeatherDay = ({data}: Item) => {
+const WeatherDay = ({data}: any) => {
     
     return(
         <C.Container>
