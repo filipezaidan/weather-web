@@ -12,10 +12,12 @@ import * as C from './App.styles';
 //Assets
 import logo from './assets/Logo.png';
 import sun from './assets/sun.png';
+import Search from './components/Search';
 
 type Weather = {
   city: string,
   temp: string,
+  forecast: [{}],
 }
 
 const App = () => {
@@ -49,7 +51,6 @@ const App = () => {
       setWeatherNow(results);
       setCity('');      
     })
-
   }
   
   useEffect(() => {
@@ -73,17 +74,11 @@ const App = () => {
       <C.Container>
         <C.Logo src={logo}/>
 
-        <C.Search> 
-          <C.SearchInput 
-            placeholder="Digite uma cidade..."
-            onChange={e => setCity(e.target.value)}
-            value={city}
-          />
-          <C.SearchButton onClick={(e) => getWeatherByCity(e)}>
-            <FiSearch size={24} color="#2EA9D3"/>
-          </C.SearchButton>
-
-        </C.Search>
+        <Search 
+          city={city} 
+          onChange={ e => setCity(e.target.value)}
+          getWeatherByCity={e => getWeatherByCity(e)}
+        />
 
         <C.WeatherArea>
           <C.WeatherToday>
@@ -97,10 +92,7 @@ const App = () => {
           <C.WeatherWrapper>
 
             <C.WeatherWeek>
-              <WeatherDay/>
-              <WeatherDay/>
-              <WeatherDay/>
-              <WeatherDay/>
+              {weatherNow?.forecast.slice(1,6).map(item => <WeatherDay data={item}/>)}
             </C.WeatherWeek>
 
             <C.WeatherUpdate>Atualizado há alguns minutos...</C.WeatherUpdate>

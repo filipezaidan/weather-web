@@ -1,16 +1,24 @@
 import * as C from './styles'
-import climate from '../../assets/climate.png';
+import climate from '../../assets/climate.png'
+import * as Ionicons  from 'react-icons/wi';
 
-const WeatherDay = () => {
+import { Item } from '../../@type/Weather';
+
+import { WeatherIcon } from '../../utils/WeatherIcon';
+
+
+const WeatherDay = ({data}: Item) => {
+    
     return(
         <C.Container>
-            <C.Day>HOJE</C.Day>
+            <C.Day>{data.weekday}</C.Day>
+            
             <C.Icon src={climate}/>
 
             <C.Temperature>
-                <C.Max>27º</C.Max>
+                <C.Max>{data.max}º</C.Max>
 
-                <C.Min>23º</C.Min>
+                <C.Min>{data.min}º</C.Min>
             </C.Temperature>
         </C.Container>
     );

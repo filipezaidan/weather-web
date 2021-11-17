@@ -21,6 +21,9 @@ export const Day = styled.p`
 `;
 export const Icon = styled.img``;
 export const Temperature = styled.div`
+    display: flex;
+    flex-direction:column;
+    align-items: center;
 `;
 export const Max = styled.div`
     font-size: 28px;
