@@ -1,6 +1,5 @@
 //Libraries
 import { useEffect, useState, } from 'react';
-import { FiSearch } from 'react-icons/fi';
 import WeatherDay from './components/WeatherWeekDay';
 
 //Services
@@ -13,6 +12,7 @@ import * as C from './App.styles';
 import logo from './assets/Logo.png';
 import sun from './assets/sun.png';
 import Search from './components/Search';
+import WeatherToday from './components/WeatherToday';
 
 type Weather = {
   city: string,
@@ -25,6 +25,7 @@ const App = () => {
   const [lat, setLat] = useState('');
   const [lng, setLng] = useState('');
   const [weatherNow, setWeatherNow] = useState<Weather>()
+  const [weather, setWeather] = useState()
 
   const getUserLocation = () => {
     function success(position : any) {
@@ -49,6 +50,7 @@ const App = () => {
       const { results } = response.data;
       
       setWeatherNow(results);
+      setWeather(results);
       setCity('');      
     })
   }
@@ -65,6 +67,7 @@ const App = () => {
       console.log(results);
       
       setWeatherNow(results);
+      setWeather(results);
     })
     
   },[lat,lng])
@@ -81,14 +84,7 @@ const App = () => {
         />
 
         <C.WeatherArea>
-          <C.WeatherToday>
-            <C.WeatherImage src={sun}/>
-
-            <C.WeatherTitle>{weatherNow?.temp}</C.WeatherTitle>
-            <C.WeatherSubtitle>{weatherNow?.city}</C.WeatherSubtitle>
-
-          </C.WeatherToday>
-
+           <WeatherToday data={weather}/> 
           <C.WeatherWrapper>
 
             <C.WeatherWeek>

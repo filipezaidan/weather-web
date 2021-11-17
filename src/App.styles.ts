@@ -26,6 +26,7 @@ export const WeatherArea = styled.div`
     width: 80%;
     border-radius: 16px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    
 `;
 
 export const WeatherToday = styled.div`
@@ -37,6 +38,7 @@ export const WeatherToday = styled.div`
     height: 100%;
     width: 30%;
     border-radius: 16px 0px 0px 16px;
+    background-color:red;
     
 `;
 export const WeatherWrapper = styled.div`
