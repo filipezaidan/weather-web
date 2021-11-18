@@ -1,14 +1,18 @@
+//Type
+import {ItemWeather} from '../../@type/Weather';
+
+//Styles
 import * as C from './styles'
+
+//Assets
 import climate from '../../assets/climate.png'
-import * as Ionicons  from 'react-icons/wi';
 
-import { Item } from '../../@type/Weather';
+//Interface
+interface Props {
+    data: ItemWeather,
+}
 
-import { WeatherIcon } from '../../utils/WeatherIcon';
-
-
-const WeatherDay = ({data}: any) => {
-    
+const WeatherDay = ({ data }: Props) => {    
     return(
         <C.Container>
             <C.Day>{data.weekday}</C.Day>
@@ -21,7 +25,7 @@ const WeatherDay = ({data}: any) => {
                 <C.Min>{data.min}º</C.Min>
             </C.Temperature>
         </C.Container>
-    );
+    );  
 }
 
 export default WeatherDay;

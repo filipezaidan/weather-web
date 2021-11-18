@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
-
-export const Search = styled.form`
+export const Container = styled.form`
     display: flex;
     padding: 5px 20px;
     align-items: center;
-    
-
     background-color: #fff;
     margin-top: 5%;
     margin-bottom: 3%;
@@ -15,8 +12,7 @@ export const Search = styled.form`
     border-radius: 16px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `
-
-export const SearchInput = styled.input`
+export const Input = styled.input`
     width: 100%;
     align-items: center; 
     border: none;
@@ -26,7 +22,7 @@ export const SearchInput = styled.input`
     font-weight: 200;
 `
 
-export const SearchButton = styled.button`
+export const Button = styled.button`
     background-color: transparent;
     border: none;
     cursor: pointer;

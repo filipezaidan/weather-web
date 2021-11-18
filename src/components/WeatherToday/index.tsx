@@ -1,4 +1,7 @@
+//Styles
 import * as C from './styles';
+
+//Assets
 import sun from '../../assets/sun.png';
 
 interface Props{
