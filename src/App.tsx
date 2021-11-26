@@ -53,6 +53,7 @@ const App = () => {
     if(lat && lng !== '')
     api.get(`/weather?key=${key}&lat=${lat}&lon=${lng}`)
     .then((response) => {
+      console.log(response.data);
       const { results } = response.data;
       
       setWeather(results);
