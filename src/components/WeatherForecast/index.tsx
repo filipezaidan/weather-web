@@ -11,16 +11,21 @@ import * as C from './styles';
 interface Props{
     data?: {
         forecast: ItemWeather[]
-    }
+    },
+    loading: boolean;
 }
 
-const WeatherForecast = ({ data } : Props) => {
+const WeatherForecast = ({ data , loading} : Props) => {
 
     return(
         <C.Container>
-            <C.Card>
-                {data?.forecast.slice(1,6).map((item : ItemWeather) => <WeatherDay data={item}/>)}
-            </C.Card>
+            {loading? 
+                <h1>Carregando...</h1> 
+                : 
+                <C.Card>
+                    {data?.forecast.slice(1,6).map((item : ItemWeather, index) => <WeatherDay key={index} data={item}/>)}
+                </C.Card>
+            }
 
             <C.Message>Atualizado há alguns minutos...</C.Message>
         </C.Container>

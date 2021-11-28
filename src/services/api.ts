@@ -5,5 +5,6 @@ import axios from 'axios';
 export const key = '33d8f162';
 
 export const api = axios.create({
-    baseURL: 'https://api.hgbrasil.com'
+    baseURL: `https://api.hgbrasil.com/`
 });
+
