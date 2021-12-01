@@ -1,32 +1,25 @@
-import * as Icon from 'react-icons/wi'
+import * as I from 'react-icons/wi'
 
-export const WeatherIcon = (icon: string) => {
-    switch(icon) {
-        case 'rain':
-            return <Icon.WiRain size={70}/>
-        case 'storm':
-            return <Icon.WiDaySleetStorm size={70}/>
-        case 'snow':
-            return <Icon.WiSnow size={70}/>
-        case 'hail':
-            return <Icon.WiHail size={70}/>
-        case 'fog':        
-            return <Icon.WiDayRain size={70}/>
-        case 'clear_day':
-            return <Icon.WiDaySunny size={70}/>
-        case 'clear_night':
-            return <Icon.WiNightClear size={70}/>
-        case 'cloud':
-            return <Icon.WiCloud size={70}/>
-        case 'cloudly_day':
-            return <Icon.WiDayCloudy size={70}/>
-        case 'cloudly_night':
-            return <Icon.WiNightAltCloudy size={70}/>
-        case 'none_day':
-            return <Icon.WiDaySunny size={70}/>
-        case 'none_night':
-            return <Icon.WiMoonWaningCrescent5 size={70}/>
-        default:
-            return <Icon.WiCloudRefresh size={70}/>
-    }
+interface IconProps {
+    [slug: string] : JSX.Element,
 }
+
+export const WeatherIcon = (slug : string, size: number ) => {
+
+    const MyIcons: IconProps = {
+        'rain' : <I.WiRain size={size}/>, 
+        'storm' : <I.WiDaySleetStorm size={size}/>,
+        'hail' : <I.WiHail size={size}/>,
+        'fog': <I.WiDayRain size={size}/>,
+        'clear_day': <I.WiDaySunny size={size}/>,
+        'clear_night': <I.WiNightClear size={size}/>,
+        'cloud': <I.WiCloud size={size}/>,
+        'cloudly_day': <I.WiDayCloudy size={size}/>,
+        'cloudly_night': <I.WiNightAltCloudy size={size}/>,
+        'none_day': <I.WiDaySunny size={size}/>,
+        'none_night' : <I.WiMoonWaningCrescent5 size={size}/>
+    }
+    return (MyIcons[slug] || MyIcons["default"])
+}
+
+

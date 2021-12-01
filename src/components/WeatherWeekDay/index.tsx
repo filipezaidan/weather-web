@@ -8,7 +8,6 @@ import {ItemWeather} from '../../@type/Weather';
 import * as C from './styles'
 
 //Assets
-import climate from '../../assets/climate.png'
 
 //Interface
 interface Props {
@@ -20,9 +19,7 @@ const WeatherDay = ({ data }: Props) => {
         <C.Container>
             <C.Day>{data.weekday}</C.Day>
             
-            {/* <C.Icon src={climate}/> */}
-
-            {WeatherIcon(data.condition)}
+            {WeatherIcon(data.condition, 70)}
 
             <C.Temperature>
                 <C.Max>{data.max}º</C.Max>
